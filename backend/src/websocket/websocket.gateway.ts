@@ -1,5 +1,5 @@
 import {
-  WebSocketGateway,
+  WebSocketGateway as WSGateway,
   WebSocketServer,
   SubscribeMessage,
   OnGatewayConnection,
@@ -11,7 +11,7 @@ import { Server, Socket } from 'socket.io';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 
-@WebSocketGateway({
+@WSGateway({
   cors: {
     origin: process.env.FRONTEND_URL || 'http://localhost:3001',
     credentials: true,

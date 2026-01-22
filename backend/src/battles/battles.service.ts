@@ -126,7 +126,15 @@ export class BattlesService {
     defenderUnits: Record<string, number>,
     attackerRating: number,
     defenderRating: number,
-  ) {
+  ): {
+    attackerLosses: Record<string, number>;
+    defenderLosses: Record<string, number>;
+    resourcesStolen?: {
+      metal: number;
+      gas: number;
+      crystal: number;
+    };
+  } {
     const attackerLosses: Record<string, number> = {};
     const defenderLosses: Record<string, number> = {};
 
@@ -150,7 +158,10 @@ export class BattlesService {
       defenderLosses[unitType] = Math.floor(count * (1 - adjustedAttackerRatio) * 0.3);
     }
 
-    return { attackerLosses, defenderLosses };
+    return {
+      attackerLosses,
+      defenderLosses,
+    };
   }
 
   private calculateFleetPower(units: Record<string, number>): number {
